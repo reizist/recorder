@@ -1,7 +1,17 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import Head from "next/head";
+import Layout from "../components/layout";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function Recorder({ Component, pageProps }) {
+  return (
+    <Layout>
+      <Head>
+        <title>計算ドリルジェネレータ</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
 
-export default MyApp
+export default Recorder;
