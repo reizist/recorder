@@ -6,6 +6,10 @@ html {
   max-height: 29.7cm;
 }
 
+.with-print {
+  display: none;
+}
+
 body {
   font-family: "Shippori Mincho B1", serif;
 }
@@ -27,5 +31,9 @@ body {
 
   .footnotes {
     page-break-after: always;
+  }
+
+  .with-print {
+    display: initial !important;
   }
 }

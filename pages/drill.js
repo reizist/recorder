@@ -65,7 +65,53 @@ export default function Drill({ token, quizes }) {
           <div className="border rounded-sm  border-gray-600 col-span-1 text-4xl mr-4 h-14"></div>
         </div>
 
-        <div className="doc grid grid-cols-2 gap-12 mt-3">
+        <div className="doc grid grid-cols-2 gap-12 mt-auto">
+          {quizes.map((q, index) => {
+            let quiz = calcQuiz(q);
+            if ((index + 1) % 10 === 0) {
+              return (
+                <>
+                  <div key={"q_" + index} className="text-3xl footnotes block">
+                    {quiz["b"]} {quiz["o"]} {quiz["a"]} =
+                    <span className="answer" style={{ display: "none" }}>
+                      {" "}
+                      {quiz["ans"]}
+                    </span>
+                  </div>
+                </>
+              );
+            } else {
+              return (
+                <>
+                  <div key={"ans_" + index} className="text-3xl block">
+                    {quiz["b"]} {quiz["o"]} {quiz["a"]} =
+                    <span className="answer" style={{ display: "none" }}>
+                      {" "}
+                      {quiz["ans"]}
+                    </span>
+                  </div>
+                </>
+              );
+            }
+          })}
+        </div>
+      </main>
+
+      <div className="with-print">
+        <Footer token={token}></Footer>
+      </div>
+
+      <div className="footnotes"></div>
+
+      <main className="with-print container max-w-6xl mx-auto items-center justify-center text-center mt-8 mb-8 h-auto">
+        <div className="name-box grid grid-cols-3 gap-4 mb-8">
+          <div className="name-label text-3xl col-span-2 mr-4 text-right">
+            <span className="align-middle">なまえ: </span>
+          </div>
+          <div className="border rounded-sm  border-gray-600 col-span-1 text-4xl mr-4 h-14"></div>
+        </div>
+
+        <div className="doc grid grid-cols-2 gap-12 mt-auto">
           {quizes.map((q, index) => {
             let quiz = calcQuiz(q);
             if ((index + 1) % 10 === 0) {
@@ -90,6 +136,7 @@ export default function Drill({ token, quizes }) {
           })}
         </div>
       </main>
+
       <Footer token={token}></Footer>
     </>
   );
