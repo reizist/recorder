@@ -1,7 +1,9 @@
+import Footer from "../components/footer";
+
 export async function getServerSideProps(context) {
   const { token } = context.query;
   const quizes = parseToken(token);
-  return { props: { quizes: quizes } };
+  return { props: { quizes: quizes, token: token } };
 }
 
 function parseToken(token) {
@@ -31,10 +33,10 @@ function calcQuiz(quiz) {
   let answer;
   let operand;
   if (op === "a") {
-    operand = "+";
+    operand = "＋";
     answer = parseInt(before, 10) + parseInt(after, 10);
   } else if (op === "s") {
-    operand = "-";
+    operand = "−";
     if (before < after) {
       let tmp = before;
       before = after;
@@ -52,40 +54,43 @@ function calcQuiz(quiz) {
   return obj;
 }
 
-export default function Drill({ quizes }) {
+export default function Drill({ token, quizes }) {
   return (
-    <main className="container max-w-6xl mx-auto items-center justify-center text-center mt-8 h-auto">
-      <div className="name-box grid grid-cols-3 gap-4 mb-8">
-        <div className="name-label text-3xl col-span-2 mr-4 text-right">
-          <span className="align-middle">なまえ: </span>
+    <>
+      <main className="container max-w-6xl mx-auto items-center justify-center text-center mt-8 mb-8 h-auto">
+        <div className="name-box grid grid-cols-3 gap-4 mb-8">
+          <div className="name-label text-3xl col-span-2 mr-4 text-right">
+            <span className="align-middle">なまえ: </span>
+          </div>
+          <div className="border rounded-sm  border-gray-600 col-span-1 text-4xl mr-4 h-14"></div>
         </div>
-        <div className="border rounded-sm  border-gray-600 col-span-1 text-4xl mr-4 h-14"></div>
-      </div>
 
-      <div className="doc grid grid-cols-2 gap-12 mt-3">
-        {quizes.map((q, index) => {
-          let quiz = calcQuiz(q);
-          if ((index + 1) % 10 === 0) {
-            return (
-              <>
-                <div className="text-3xl footnotes block">
-                  {quiz["b"]} {quiz["o"]} {quiz["a"]} =
-                  <span className="answer"> {quiz["ans"]}</span>
-                </div>
-              </>
-            );
-          } else {
-            return (
-              <>
-                <div className="text-3xl block">
-                  {quiz["b"]} {quiz["o"]} {quiz["a"]} =
-                  <span className="answer"> {quiz["ans"]}</span>
-                </div>
-              </>
-            );
-          }
-        })}
-      </div>
-    </main>
+        <div className="doc grid grid-cols-2 gap-12 mt-3">
+          {quizes.map((q, index) => {
+            let quiz = calcQuiz(q);
+            if ((index + 1) % 10 === 0) {
+              return (
+                <>
+                  <div key={index} className="text-3xl footnotes block">
+                    {quiz["b"]} {quiz["o"]} {quiz["a"]} =
+                    <span className="answer"> {quiz["ans"]}</span>
+                  </div>
+                </>
+              );
+            } else {
+              return (
+                <>
+                  <div key={index} className="text-3xl block">
+                    {quiz["b"]} {quiz["o"]} {quiz["a"]} =
+                    <span className="answer"> {quiz["ans"]}</span>
+                  </div>
+                </>
+              );
+            }
+          })}
+        </div>
+      </main>
+      <Footer token={token}></Footer>
+    </>
   );
 }
