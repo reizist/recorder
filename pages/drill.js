@@ -55,7 +55,14 @@ function calcQuiz(quiz) {
 export default function Drill({ quizes }) {
   return (
     <main className="container max-w-6xl mx-auto items-center justify-center text-center mt-8 h-auto">
-      <div id="doc" className="doc grid grid-cols-2 gap-12">
+      <div className="name-box grid grid-cols-3 gap-4 mb-8">
+        <div className="name-label text-3xl col-span-2 mr-4 text-right">
+          <span className="align-middle">なまえ: </span>
+        </div>
+        <div className="border rounded-sm  border-gray-600 col-span-1 text-4xl mr-4 h-14"></div>
+      </div>
+
+      <div className="doc grid grid-cols-2 gap-12 mt-3">
         {quizes.map((q, index) => {
           let quiz = calcQuiz(q);
           if ((index + 1) % 10 === 0) {
