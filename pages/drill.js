@@ -22,9 +22,12 @@ function parseToken(token) {
 }
 
 function calcQuiz(quiz) {
-  let before = quiz[0];
-  const op = quiz[1];
-  let after = quiz[2];
+  const pattern = /\D/;
+  let str = quiz.split(pattern);
+  let before = str[0];
+  const op = quiz.match(pattern)[0];
+  let after = str[1];
+
   let answer;
   let operand;
   if (op === "a") {

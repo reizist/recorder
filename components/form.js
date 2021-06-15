@@ -12,7 +12,6 @@ export default function Form() {
       min = 0;
       max = 9;
     } else if (difficulty === "2") {
-      console.log("dff: 2");
       min = 10;
       max = 99;
     } else if (difficulty === "3") {
@@ -23,13 +22,31 @@ export default function Form() {
       max = 9;
     }
 
-    return Math.floor(Math.random() * (max + 1 - min)) + min;
+    const num = Math.floor(Math.random() * (max + 1 - min)) + min;
+    return num;
+  };
+
+  const choiceDividable = (num) => {
+    var results = [];
+    for (var i = 1; i <= num; i++) {
+      if (num % i == 0) {
+        results.push(i);
+      }
+    }
+    return results[Math.floor(Math.random() * results.length)];
   };
 
   const generateQuiz = (difficulty, operand) => {
     const before = decideNum(difficulty);
-    const after = decideNum(difficulty);
-    return before.toString() + operand + after.toString();
+    let after;
+    // 割り切れる数字のみ
+    if (operand === "d") {
+      after = choiceDividable(before);
+    } else {
+      after = decideNum(difficulty);
+    }
+    const str = before.toString() + operand + after.toString();
+    return str;
   };
 
   const generateToken = (num, difficulty, operand) => {
