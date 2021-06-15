@@ -97,10 +97,6 @@ export default function Drill({ token, quizes }) {
         </div>
       </main>
 
-      <div className="with-print">
-        <Footer token={token}></Footer>
-      </div>
-
       <div className="footnotes"></div>
 
       <main className="with-print container max-w-6xl mx-auto items-center justify-center text-center mt-8 mb-8 h-auto">
