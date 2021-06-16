@@ -37,10 +37,17 @@ export default function Form() {
   };
 
   const generateQuiz = (difficulty, operand) => {
-    const before = decideNum(difficulty);
+    let before = decideNum(difficulty);
     let after;
-    // 割り切れる数字のみ
-    if (operand === "d") {
+    if (operand === "s") {
+      after = decideNum(difficulty);
+
+      if (before < after) {
+        let tmp = before;
+        before = after;
+        after = tmp;
+      }
+    } else if (operand === "d") {
       after = choiceDividable(before);
     } else {
       after = decideNum(difficulty);
