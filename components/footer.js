@@ -24,7 +24,7 @@ export default function Footer({ token }) {
             </a>
           </span>
         </div>
-        <div className="flex-box without-print">
+        <div className="flex-box without-print mb-2">
           <span className="text-base">
             改善/機能追加依頼は
             <a
