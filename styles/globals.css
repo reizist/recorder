@@ -36,4 +36,8 @@ body {
   .with-print {
     display: initial !important;
   }
+
+  .without-print {
+    display: none !important;
+  }
 }
