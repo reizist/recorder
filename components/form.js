@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 export default function Form() {
   const router = useRouter();
 
-  const decideNum = (difficulty) => {
+  const decideNum = (difficulty, operand) => {
     let min;
     let max;
 
@@ -22,25 +22,37 @@ export default function Form() {
       max = 9;
     }
 
+    if (operand === "d") {
+      min = 1;
+    }
+
     const num = Math.floor(Math.random() * (max + 1 - min)) + min;
     return num;
   };
 
   const choiceDividable = (num) => {
-    var results = [];
-    for (var i = 1; i <= num; i++) {
-      if (num % i == 0) {
-        results.push(i);
+    let results = [];
+    const weight = 5;
+
+    for (let i = 1; i <= num; i++) {
+      if (num % i === 0) {
+        // 1 と 自身の数 の出現頻度を下げるための重み付け
+        if (i !== 1 && i !== num) {
+          [...Array(weight)].forEach((_) => results.push(i));
+        } else {
+          results.push(i);
+        }
       }
     }
-    return results[Math.floor(Math.random() * results.length)];
+    let value = results[Math.floor(Math.random() * results.length)];
+    return value;
   };
 
   const generateQuiz = (difficulty, operand) => {
-    let before = decideNum(difficulty);
+    let before = decideNum(difficulty, operand);
     let after;
     if (operand === "s") {
-      after = decideNum(difficulty);
+      after = decideNum(difficulty, operand);
 
       if (before < after) {
         let tmp = before;
@@ -50,7 +62,7 @@ export default function Form() {
     } else if (operand === "d") {
       after = choiceDividable(before);
     } else {
-      after = decideNum(difficulty);
+      after = decideNum(difficulty, operand);
     }
     const str = before.toString() + operand + after.toString();
     return str;
