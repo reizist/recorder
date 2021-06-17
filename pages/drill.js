@@ -68,9 +68,11 @@ export default function Drill({ token, quizes }) {
         {["quiz_", "ans_"].map((prefix) => (
           <div
             key={prefix}
-            className={`doc grid grid-cols-2 gap-10 mt-10 ${
-              prefix === "quiz_" ? "page" : ""
-            } ${prefix === "ans_" ? "with-print" : ""}
+            className={`doc grid gap-10 mt-10 ${
+              quizes.length === 30 ? "grid-cols-3" : "grid-cols-2"
+            } ${prefix === "quiz_" ? "page" : ""} ${
+              prefix === "ans_" ? "with-print" : ""
+            }
             `}
           >
             {quizes.map((q, index) => {
