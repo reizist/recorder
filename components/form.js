@@ -51,19 +51,28 @@ export default function Form() {
   const generateQuiz = (difficulty, operand) => {
     let before = decideNum(difficulty, operand);
     let after;
-    if (operand === "s") {
-      after = decideNum(difficulty, operand);
 
-      if (before < after) {
-        let tmp = before;
-        before = after;
-        after = tmp;
-      }
-    } else if (operand === "d") {
-      after = choiceDividable(before);
-    } else {
+    if (difficulty === "0" && operand === "a") {
       after = decideNum(difficulty, operand);
+      while (before + after >= 10) {
+        after = decideNum(difficulty, operand);
+      }
+    } else {
+      if (operand === "s") {
+        after = decideNum(difficulty, operand);
+
+        if (before < after) {
+          let tmp = before;
+          before = after;
+          after = tmp;
+        }
+      } else if (operand === "d") {
+        after = choiceDividable(before);
+      } else {
+        after = decideNum(difficulty, operand);
+      }
     }
+
     const str = before.toString() + operand + after.toString();
     return str;
   };
@@ -85,7 +94,7 @@ export default function Form() {
 
   const [state, setState] = useState({
     num: "10",
-    difficulty: "1",
+    difficulty: "0",
     operand: "a",
   });
 
@@ -127,6 +136,7 @@ export default function Form() {
             onChange={handleChangeDifficulty}
             className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           >
+            <option value="0">ちょうかんたん(繰り上がりなし)</option>
             <option value="1">かんたん(ひとけた)</option>
             <option value="2">ふつう(ふたけた)</option>
             <option value="3">むずかしい(さんけた)</option>
