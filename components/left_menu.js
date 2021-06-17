@@ -18,12 +18,11 @@ export default function LeftMenu() {
 
       <div className="pb-6">
         <span className="mr-8 tracking-wider">
-          <a
-            href="#"
-            class="text-grey-dark hover:no-underline hover:text-purple-700"
-          >
-            漢字ドリルジェネレータ
-          </a>
+          <Link href="/kanji">
+            <a className="hover:no-underline hover:text-purple-700">
+              漢字ドリルジェネレータ
+            </a>
+          </Link>
         </span>
       </div>
     </div>

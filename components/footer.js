@@ -1,18 +1,21 @@
 export default function Footer({ token }) {
   let qrCodeUrl;
-  if (typeof window !== "undefined") {
-    qrCodeUrl =
-      "https://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=" +
-      "https://" +
-      window.location.hostname +
-      "/drill?token=" +
-      token;
-  } else {
-    qrCodeUrl =
-      "https://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=" +
-      "https://recorder-reizist.vercel.app/drill?token=" +
-      token;
+  if (token) {
+    if (typeof window !== "undefined") {
+      qrCodeUrl =
+        "https://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=" +
+        "https://" +
+        window.location.hostname +
+        "/drill?token=" +
+        token;
+    } else {
+      qrCodeUrl =
+        "https://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=" +
+        "https://recorder-reizist.vercel.app/drill?token=" +
+        token;
+    }
   }
+
   return (
     <footer className="flex items-center justify-center border-t mt-4">
       <div className="flex-box">

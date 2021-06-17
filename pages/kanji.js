@@ -1,12 +1,11 @@
 import Head from "next/head";
-import Form from "../components/form";
 import LeftMenu from "../components/left_menu";
 
-export default function Home() {
+export default function Kanji() {
   return (
     <div className="flex flex-col items-center justify-center py-2">
       <Head>
-        <title>計算ドリルジェネレータ</title>
+        <title>漢字ドリルジェネレータ</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -15,9 +14,7 @@ export default function Home() {
           <LeftMenu />
         </div>
 
-        <div className="w-full lg:w-4/6 bg-white mb-4 pr-6">
-          <Form></Form>
-        </div>
+        <div className="w-full lg:w-4/6 bg-white mb-4 pr-6"></div>
       </div>
     </div>
   );
