@@ -1,5 +1,6 @@
 import Head from "next/head";
 import LeftMenu from "../components/left_menu";
+import Stroke from "../components/kanji/stroke";
 
 export default function Kanji() {
   return (
@@ -14,7 +15,9 @@ export default function Kanji() {
           <LeftMenu />
         </div>
 
-        <div className="w-full lg:w-4/6 bg-white mb-4 pr-6"></div>
+        <div className="w-full lg:w-4/6 bg-white mb-4 pr-6">
+          <Stroke />
+        </div>
       </div>
     </div>
   );
