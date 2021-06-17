@@ -21,7 +21,7 @@ export default function Footer({ token }) {
           Powered by{" "}
           <span className="pl-1 text-base text-purple-700">
             <a href="https://recorder-reizist.vercel.app/">
-              計算ドリルジェネレータ
+              ドリルジェネレータ
             </a>
           </span>
         </div>

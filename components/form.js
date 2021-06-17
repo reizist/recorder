@@ -145,36 +145,6 @@ export default function Form() {
     <div>
       <div className="mt-8 mx-auto max-w-lg">
         <div className="mb-8 block">
-          <label htmlFor="num" className="text-sm block">
-            つくるかず
-          </label>
-          <select
-            onChange={handleChangeNum}
-            className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          >
-            {[10, 20, 30].map((num) => (
-              <option value={num}>{num}</option>
-            ))}
-            )
-          </select>
-        </div>
-
-        <div className="mb-8 block">
-          <label htmlFor="difficulty" className="text-sm block">
-            むずかしさ
-          </label>
-          <select
-            onChange={handleChangeDifficulty}
-            className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          >
-            <option value="0">ちょうかんたん(繰り上がりなし)</option>
-            <option value="1">かんたん(ひとけた)</option>
-            <option value="2">ふつう(ふたけた)</option>
-            <option value="3">むずかしい(さんけた)</option>
-          </select>
-        </div>
-
-        <div className="mb-8 block">
           <label htmlFor="difficulty" className="text-sm block">
             けいさん
           </label>
@@ -189,7 +159,38 @@ export default function Form() {
 
             <option value="A">たしざん+ひきざん</option>
             <option value="M">かけざん+わりざん</option>
+
             <option value="r">ぜんぶ</option>
+          </select>
+        </div>
+
+        <div className="mb-8 block">
+          <label htmlFor="difficulty" className="text-sm block">
+            むずかしさ
+          </label>
+          <select
+            onChange={handleChangeDifficulty}
+            className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          >
+            <option value="0">ちょうかんたん(くりあげなし)</option>
+            <option value="1">かんたん(ひとけた)</option>
+            <option value="2">ふつう(ふたけた)</option>
+            <option value="3">むずかしい(さんけた)</option>
+          </select>
+        </div>
+
+        <div className="mb-8 block">
+          <label htmlFor="num" className="text-sm block">
+            つくるかず
+          </label>
+          <select
+            onChange={handleChangeNum}
+            className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          >
+            {[10, 20, 30].map((num) => (
+              <option value={num}>{num}</option>
+            ))}
+            )
           </select>
         </div>
 

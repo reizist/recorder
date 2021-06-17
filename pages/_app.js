@@ -20,7 +20,7 @@ function Recorder({ Component, pageProps }) {
   return (
     <Layout>
       <Head>
-        <title>計算ドリルジェネレータ</title>
+        <title>ドリルジェネレータ</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />
