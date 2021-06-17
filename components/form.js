@@ -107,9 +107,12 @@ export default function Form() {
 
   const generateToken = (num, difficulty, operand) => {
     let quizes = [];
-    [...Array(parseInt(num, 10))].forEach(() =>
-      quizes.push(generateQuiz(difficulty, operand))
-    );
+    while (quizes.length < num) {
+      let quiz = generateQuiz(difficulty, operand);
+      if (!quizes.includes(quiz)) {
+        quizes.push(quiz);
+      }
+    }
 
     return quizes.join(":");
   };
