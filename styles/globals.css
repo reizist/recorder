@@ -18,6 +18,11 @@ body {
   size: A4;
 }
 
+.page {
+  page-break-after: always;
+  page-break-inside: avoid;
+}
+
 @media print {
   html,
   body {
@@ -29,12 +34,8 @@ body {
     display: none;
   }
 
-  .footnotes {
-    page-break-after: always;
-  }
-
   .with-print {
-    display: initial !important;
+    display: grid !important;
   }
 
   .without-print {

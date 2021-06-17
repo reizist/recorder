@@ -65,72 +65,42 @@ export default function Drill({ token, quizes }) {
           <div className="border rounded-sm  border-gray-600 col-span-1 text-4xl mr-4 h-14"></div>
         </div>
 
-        <div className="doc grid grid-cols-2 gap-12 mt-auto">
-          {quizes.map((q, index) => {
-            let quiz = calcQuiz(q);
-            if ((index + 1) % 10 === 0) {
+        {["quiz_", "ans_"].map((prefix) => (
+          <div
+            key={prefix}
+            className={`doc grid grid-cols-2 gap-10 mt-10 ${
+              prefix === "quiz_" ? "page" : ""
+            } ${prefix === "ans_" ? "with-print" : ""}
+            `}
+          >
+            {quizes.map((q, index) => {
+              let quiz = calcQuiz(q);
               return (
                 <>
-                  <div key={"q_" + index} className="text-3xl footnotes block">
-                    {quiz["b"]} {quiz["o"]} {quiz["a"]} =
-                    <span className="answer" style={{ display: "none" }}>
-                      {" "}
-                      {quiz["ans"]}
+                  <div key={prefix + index + q} className="text-3xl block mb-2">
+                    <span>
+                      {quiz["b"]} {quiz["o"]} {quiz["a"]} ={" "}
                     </span>
+                    {prefix === "quiz_" && (
+                      <span
+                        key={prefix + index + q}
+                        className="answer ml-2"
+                        style={{ display: "none" }}
+                      >
+                        {quiz["ans"]}
+                      </span>
+                    )}
+                    {prefix === "ans_" && (
+                      <span key={prefix + index + q} className="answer ml-2">
+                        {quiz["ans"]}
+                      </span>
+                    )}
                   </div>
                 </>
               );
-            } else {
-              return (
-                <>
-                  <div key={"ans_" + index} className="text-3xl block">
-                    {quiz["b"]} {quiz["o"]} {quiz["a"]} =
-                    <span className="answer" style={{ display: "none" }}>
-                      {" "}
-                      {quiz["ans"]}
-                    </span>
-                  </div>
-                </>
-              );
-            }
-          })}
-        </div>
-      </main>
-
-      <div className="footnotes"></div>
-
-      <main className="with-print container max-w-6xl mx-auto items-center justify-center text-center mt-8 mb-8 h-auto">
-        <div className="name-box grid grid-cols-3 gap-4 mb-8">
-          <div className="name-label text-3xl col-span-2 mr-4 text-right">
-            <span className="align-middle">なまえ: </span>
+            })}
           </div>
-          <div className="border rounded-sm  border-gray-600 col-span-1 text-4xl mr-4 h-14"></div>
-        </div>
-
-        <div className="doc grid grid-cols-2 gap-12 mt-auto">
-          {quizes.map((q, index) => {
-            let quiz = calcQuiz(q);
-            if ((index + 1) % 10 === 0) {
-              return (
-                <>
-                  <div key={index} className="text-3xl footnotes block">
-                    {quiz["b"]} {quiz["o"]} {quiz["a"]} =
-                    <span className="answer"> {quiz["ans"]}</span>
-                  </div>
-                </>
-              );
-            } else {
-              return (
-                <>
-                  <div key={index} className="text-3xl block">
-                    {quiz["b"]} {quiz["o"]} {quiz["a"]} =
-                    <span className="answer"> {quiz["ans"]}</span>
-                  </div>
-                </>
-              );
-            }
-          })}
-        </div>
+        ))}
       </main>
 
       <Footer token={token}></Footer>
