@@ -3,6 +3,7 @@ export default function Footer({ token }) {
   if (typeof window !== "undefined") {
     qrCodeUrl =
       "https://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=" +
+      "https://" +
       window.location.hostname +
       "/drill?token=" +
       token;
