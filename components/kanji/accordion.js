@@ -1,7 +1,7 @@
 import { useRef } from "react";
 /* Logic */
 const style = {
-  accordion: `overflow-hidden md:overflow-x-hidden transition-height ease duration-300 text-gray-600`,
+  accordion: `overflow-hidden md:overflow-x-hidden transition-height ease duration-300 text-gray-600 m-3`,
   accordionHeader: `block focus:outline-none border-b my-2 p-3`,
 };
 
