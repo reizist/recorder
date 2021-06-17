@@ -4,6 +4,32 @@ import { useRouter } from "next/router";
 export default function Form() {
   const router = useRouter();
 
+  const decideActualOperand = (operand) => {
+    let operands = [];
+    switch (operand) {
+      case "a":
+        return "a";
+      case "s":
+        return "s";
+      case "m":
+        return "m";
+      case "d":
+        return "d";
+      case "A":
+        operands = ["a", "s"];
+        return operands[Math.floor(Math.random() * operands.length)];
+      case "M":
+        operands = ["m", "d"];
+        return operands[Math.floor(Math.random() * operands.length)];
+      case "r":
+        operands = ["a", "s", "m", "d"];
+        return operands[Math.floor(Math.random() * operands.length)];
+      default:
+        console.error("Unexpected operand", operand);
+        return "a";
+    }
+  };
+
   const decideNum = (difficulty, operand) => {
     let min;
     let max;
@@ -51,29 +77,31 @@ export default function Form() {
   const generateQuiz = (difficulty, operand) => {
     let before = decideNum(difficulty, operand);
     let after;
+    const op = decideActualOperand(operand);
 
-    if (difficulty === "0" && operand === "a") {
-      after = decideNum(difficulty, operand);
+    if (difficulty === "0" && op === "a") {
+      after = decideNum(difficulty, op);
       while (before + after >= 10) {
-        after = decideNum(difficulty, operand);
+        before = decideNum(difficulty, op);
+        after = decideNum(difficulty, op);
       }
     } else {
-      if (operand === "s") {
-        after = decideNum(difficulty, operand);
+      if (op === "s") {
+        after = decideNum(difficulty, op);
 
         if (before < after) {
           let tmp = before;
           before = after;
           after = tmp;
         }
-      } else if (operand === "d") {
+      } else if (op === "d") {
         after = choiceDividable(before);
       } else {
-        after = decideNum(difficulty, operand);
+        after = decideNum(difficulty, op);
       }
     }
 
-    const str = before.toString() + operand + after.toString();
+    const str = before.toString() + op + after.toString();
     return str;
   };
 
@@ -155,6 +183,10 @@ export default function Form() {
             <option value="s">ひきざん</option>
             <option value="m">かけざん</option>
             <option value="d">わりざん</option>
+
+            <option value="A">たしざん+ひきざん</option>
+            <option value="M">かけざん+わりざん</option>
+            <option value="r">ぜんぶ</option>
           </select>
         </div>
 
