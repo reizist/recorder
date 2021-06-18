@@ -1,5 +1,5 @@
 import "../../components/kanji/util";
-import svgPath from "../../components/kanji/util";
+import { svgPath } from "../../components/kanji/util";
 
 export async function getServerSideProps(context) {
   const { s } = context.query;
