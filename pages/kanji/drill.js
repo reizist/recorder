@@ -33,7 +33,7 @@ export default function KanjiDrill({ token, kanjis }) {
         <main className="kanji container px-4 text-center">
           <div className="name-box grid grid-cols-4 gap-4 m-4">
             <div className="qr-code">
-              <QrCODE token={token} size={100} />
+              <QrCODE path={"kanji_drill?token=" + token} size={100} />
             </div>
             <div className="text-3xl justify-center align-center">なまえ:</div>
             <div className="border m-3 rounded-sm border-gray-600 col-span-2"></div>

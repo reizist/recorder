@@ -28,6 +28,10 @@ body {
   overflow-y: scroll;
 }
 
+.name-box {
+  width: 100px;
+}
+
 @media print {
   .header {
     display: none;
