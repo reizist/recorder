@@ -37,7 +37,7 @@ function calcQuiz(quiz) {
     answer = parseInt(before, 10) + parseInt(after, 10);
   } else if (op === "s") {
     operand = "−";
-    if (before < after) {
+    if (parseInt(before, 10) < parseInt(after, 10)) {
       let tmp = before;
       before = after;
       after = tmp;
