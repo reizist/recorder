@@ -71,12 +71,12 @@ export default function KanjiDrill({ token, kanjis }) {
                         )}
                       </div>
                     </div>
-                    {[1, 2, 3, 4].map((index) => (
+                    {[2, 3, 4, 4].map((index) => (
                       <div className="text-center border m-1 align-middle items-center">
                         {renderSVG(
                           kanji,
                           `h-full w-full object-cover object-center w-11/12 h-11/12 opacity-${
-                            100 - Math.min(25 * index, 100)
+                            100 - Math.min(30 * index, 100)
                           }`
                         )}
                       </div>
