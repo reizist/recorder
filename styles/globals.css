@@ -28,7 +28,7 @@ body {
   overflow-y: scroll;
 }
 
-.name-box {
+.kanji > .name-box {
   width: 100px;
 }
 
