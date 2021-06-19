@@ -11,7 +11,7 @@ export async function getServerSideProps(context) {
   return { props: { kanjis: kanjis, token: token } };
 }
 
-const MAX_RENDERABLE_NUM = 7;
+const MAX_RENDERABLE_NUM = 9;
 
 const eachSlice = (arr, n = 2) => {
   let dup = [...arr];
@@ -66,16 +66,16 @@ export default function KanjiDrill({ token, kanjis }) {
               {kanji_parts.length > 0 &&
                 kanji_parts.map((kanji) => (
                   <div className="grid grid-cols-7 grid-flow-row gap-1 auto-cols-max auto-rows-max md:auto-rows-min page">
-                    <div className="pb-full relative">
-                      <div className="absolute inset-0 h-full w-full">
+                    <div className="pb-full">
+                      <div className="h-full w-full">
                         {renderSVG(
                           kanji,
                           "h-full w-full object-cover object-center w-8/12 h-8/12"
                         )}
                       </div>
                     </div>
-                    <div className="text-center border border-gray-400 m-1 align-middle items-center">
-                      {data !== undefined && (
+                    <div className="text-center w-5/6 border-gray-400 m-1 align-middle items-center">
+                      {data !== undefined && data.meta.length > 0 && (
                         <>
                           <div className="grid grid-cols-3 w-1/3 m-1">
                             <div className="col-span-1 text-xs">
