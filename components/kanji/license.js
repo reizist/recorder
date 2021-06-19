@@ -2,8 +2,22 @@ export default function License() {
   return (
     <div className="text-xs">
       <p>
-        KanjiVG is copyright Ulrich Apel and released under the Creative Commons
-        Attribution-Share Alike 3.0 licence:
+        <a
+          href="https://github.com/KanjiVG/kanjivg/blob/master/COPYING"
+          target="_blank"
+          className="text-purple-700"
+        >
+          KanjiVG
+        </a>{" "}
+        and{" "}
+        <a
+          href="http://www.edrdg.org/wiki/index.php/KANJIDIC_Project"
+          target="_blank"
+          className="text-purple-700"
+        >
+          KANJIDIC2
+        </a>{" "}
+        released under the Creative Commons Attribution-Share Alike 3.0 licence:
       </p>
       <p>
         <a
@@ -13,17 +27,6 @@ export default function License() {
         >
           http://creativecommons.org/licenses/by-sa/3.0/
         </a>
-      </p>
-      <p>
-        See the{" "}
-        <a
-          href="https://github.com/KanjiVG/kanjivg/blob/master/COPYING"
-          target="_blank"
-          className="text-purple-700"
-        >
-          COPYING
-        </a>{" "}
-        file for more details.
       </p>
     </div>
   );
