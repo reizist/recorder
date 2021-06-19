@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { element_1_kanjis, element_2_kanjis } from "./define";
-import Link from "next/link";
 import { AccordionHeader, Accordion } from "./accordion";
+import License from "./license";
 
 export default function Stroke() {
   const [activeItem, setActiveItem] = useState("");
   const toggleActiveItem = (id) => () => {
     setActiveItem((prevState) => (prevState !== id ? id : ""));
   };
-  const kanji_lists = [
+
+  const kanjiLists = [
     { level: 1, label: "小学一年生", list: element_1_kanjis },
     { level: 2, label: "小学二年生", list: element_2_kanjis },
     { level: 3, label: "小学三年生", list: [] },
@@ -18,16 +19,43 @@ export default function Stroke() {
     { level: 6, label: "小学六年生", list: [] },
   ];
 
+  let allKanjiList = [];
+  let initState = {};
+
+  kanjiLists.map((kanjiList) => {
+    allKanjiList = allKanjiList.concat(kanjiList["list"]);
+  });
+
+  allKanjiList.map((kanji) => {
+    initState[kanji] = false;
+  });
+
+  const [kanjiState, setKanjiState] = useState(initState);
+
   const router = useRouter();
+
+  const handleKanjiClick = (e) => {
+    let kanji = e.currentTarget.innerText;
+    setKanjiState({ ...kanjiState, [kanji]: !kanjiState[kanji] });
+  };
+
   const handleClick = (e) => {
     e.preventDefault();
-    const token = generateToken(state.list);
+
+    const token = generateToken(activeKanjiList());
     router.push("/kanji/drill?token=" + token);
   };
 
-  const [state, setState] = useState({
-    list: [],
-  });
+  const activeKanjiList = () => {
+    let activeList = [];
+    for (let key in kanjiState) {
+      if (kanjiState[key] === true) {
+        activeList.push(key);
+      }
+    }
+
+    return activeList;
+  };
 
   const generateToken = (list) => {
     return list.join(":");
@@ -37,7 +65,7 @@ export default function Stroke() {
     <>
       <div className="mt-8">
         <div>
-          {kanji_lists.map((kanji) => (
+          {kanjiLists.map((kanji) => (
             <>
               <AccordionHeader
                 id={"element-" + kanji["level"]}
@@ -50,11 +78,20 @@ export default function Stroke() {
                 <div className="grid grid-cols-5 grid-flow-row gap-2 auto-rows-max md:auto-rows-min">
                   {kanji["list"].length > 0 &&
                     kanji["list"].map((kanji) => (
-                      <Link href={"/kanji/detail?s=" + kanji}>
-                        <div className="text-center justify-center items-center">
-                          <span className="text-2xl">{kanji}</span>
-                        </div>
-                      </Link>
+                      <div
+                        className={`text-center justify-center items-center ${
+                          kanjiState[kanji] === true ? "bg-blue-500" : ""
+                        }`}
+                        onClick={handleKanjiClick}
+                      >
+                        <span
+                          className={`text-2xl ${
+                            kanjiState[kanji] == true ? "text-white" : ""
+                          }`}
+                        >
+                          {kanji}
+                        </span>
+                      </div>
                     ))}
 
                   {kanji["list"].length <= 0 && <span>準備中..</span>}
@@ -62,6 +99,19 @@ export default function Stroke() {
               </Accordion>
             </>
           ))}
+
+          <div className="mb-8 block text-center text-xl">
+            <label htmlFor="list" className="text-sm block">
+              選択されている漢字
+            </label>
+            <input
+              type="textfield"
+              className="list m-1 p-1 border w-5/6"
+              value={activeKanjiList().join(",")}
+              disabled
+            />
+          </div>
+
           <div className="mb-8 block text-center">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -69,6 +119,10 @@ export default function Stroke() {
             >
               問題作成
             </button>
+          </div>
+
+          <div className="mb-8 block text-center">
+            <License />
           </div>
         </div>
       </div>
