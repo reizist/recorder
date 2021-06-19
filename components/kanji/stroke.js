@@ -68,6 +68,7 @@ export default function Stroke() {
           {kanjiLists.map((kanji) => (
             <>
               <AccordionHeader
+                key={"element-" + kanji["level"]}
                 id={"element-" + kanji["level"]}
                 activeItem={activeItem}
                 onClick={toggleActiveItem("element-" + kanji["level"])}
@@ -75,10 +76,14 @@ export default function Stroke() {
                 {kanji["label"]}
               </AccordionHeader>
               <Accordion id={"element-" + kanji["level"]} isOpen={activeItem}>
-                <div className="grid grid-cols-5 grid-flow-row gap-2 auto-rows-max md:auto-rows-min">
+                <div
+                  key={"element-" + kanji["level"]}
+                  className="grid grid-cols-5 grid-flow-row gap-2 auto-rows-max md:auto-rows-min"
+                >
                   {kanji["list"].length > 0 &&
                     kanji["list"].map((kanji) => (
                       <div
+                        key={kanji}
                         className={`text-center justify-center items-center ${
                           kanjiState[kanji] === true ? "bg-blue-500" : ""
                         }`}

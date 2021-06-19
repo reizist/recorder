@@ -42,7 +42,7 @@ export default function KanjiDrill({ token, kanjis }) {
 
       <div className="text-center mt-4 without-print">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 m-2 px-4 rounded"
           onClick={() => window.print()}
         >
           プリントする
@@ -54,13 +54,13 @@ export default function KanjiDrill({ token, kanjis }) {
           <main className="kanji container px-4 text-center">
             <div className="name-box grid grid-cols-5 gap-4 m-4 items-center text-right">
               <div className="qr-code">
-                <QrCODE path={"kanji_drill?token=" + token} size={100} />{" "}
+                <QrCODE path={"kanji_drill?token=" + token} size={100} />
               </div>
               <div className="text-center">
                 <span className="text-xs">©ドリルジェネレータ</span>
               </div>
               <div className="text-3xl">なまえ</div>
-              <div className="border m-4 rounded-sm border-gray-600 col-span-2 w-5/6"></div>{" "}
+              <div className="border m-4 rounded-sm border-gray-600 col-span-2 w-5/6"></div>
             </div>
             <div className="mt-1">
               {kanji_parts.length > 0 &&
@@ -74,7 +74,7 @@ export default function KanjiDrill({ token, kanjis }) {
                         )}
                       </div>
                     </div>
-                    <div className="text-center w-5/6 border-gray-400 m-1 align-middle items-center">
+                    <div className="text-center w-5/6 border-gray-400 m-1 align-middle">
                       {data !== undefined && data.meta.length > 0 && (
                         <>
                           <div className="grid grid-cols-3 w-1/3 m-1">
@@ -102,7 +102,9 @@ export default function KanjiDrill({ token, kanjis }) {
                           </div>
 
                           <div className="grid grid-cols-3 w-1/3 m-1">
-                            <div className="col-span-1 text-xs">画数</div>
+                            <div className="col-span-1 text-xs rounded-lg">
+                              <span className="border p-px rounded-lg">画</span>
+                            </div>
                             <div
                               className="col-span-2 text-xs"
                               style={{ "text-combine-upright": "all" }}
@@ -111,6 +113,7 @@ export default function KanjiDrill({ token, kanjis }) {
                                 data.meta.filter((d) => d.literal === kanji)[0]
                                   .stroke_count
                               }
+                              画
                             </div>
                           </div>
                         </>

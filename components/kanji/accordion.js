@@ -2,7 +2,7 @@ import { useRef } from "react";
 /* Logic */
 const style = {
   accordion: `overflow-hidden md:overflow-x-hidden transition-height ease duration-300 text-gray-600 m-3`,
-  accordionHeader: `block focus:outline-none border-b my-2 p-3`,
+  accordionHeader: `block focus:outline-none border-b my-2 p-3 bg-gray-500 text-white`,
 };
 
 export const Accordion = ({ children, id, isOpen }) => {
