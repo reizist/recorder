@@ -11,11 +11,11 @@ export default function Kanji() {
       </Head>
 
       <div className="container mx-auto flex flex-col lg:flex-row mt-2 text-sm leading-normal">
-        <div className="w-full lg:w-2/6 pl-4 lg:pl-1 pr-4 mt-8 mb-4">
+        <div className="w-full lg:w-3/12 my-8 mx-4">
           <LeftMenu />
         </div>
 
-        <div className="w-full lg:w-4/6 bg-white mb-4 pr-6">
+        <div className="w-full lg:w-9/12 bg-white mb-4 px-4 text-center">
           <Stroke />
         </div>
       </div>

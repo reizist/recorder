@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export default function LeftMenu() {
   return (
-    <div className="flex flex-col items-baseline justify-center ml-10">
-      <div className="pb-6">
-        <span className="mr-8 tracking-wider">
+    <div className="flex flex-col items-baseline justify-center">
+      <div className="pb-6 text-left">
+        <span className="tracking-wider">
           <Link href="/calc">
             <a className="hover:no-underline hover:text-purple-700">
               計算ドリルジェネレータ
@@ -16,7 +16,7 @@ export default function LeftMenu() {
         </span>
       </div>
 
-      <div className="pb-6">
+      <div className="pb-6 text-left">
         <span className="mr-8 tracking-wider">
           <Link href="/kanji">
             <a className="hover:no-underline hover:text-purple-700">

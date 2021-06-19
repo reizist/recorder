@@ -12,16 +12,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="container mx-auto flex flex-col lg:flex-row mt-2 text-sm leading-normal">
-        <div className="w-full lg:w-2/6 pl-4 lg:pl-1 pr-4 mt-8 mb-4">
+      <div className="container mx-auto flex flex-col lg:flex-row mt-2 text-sm leading-normal text-center">
+        <div className="w-full lg:w-3/12 my-8 mx-4">
           <LeftMenu />
         </div>
 
-        <div className="w-full lg:w-3/6 bg-white mb-4 pr-6">
+        <div className="w-full lg:w-7/12 bg-white mb-4 px-4 text-center">
           <Form></Form>
         </div>
 
-        <div className="w-full lg:w-1/6 bg-white mb-4 pr-6">
+        <div className="w-full lg:w-2/12  md:w-4/6 xs:w-4/6 bg-white mb-4 px-4 text-center">
           <Tweets></Tweets>
         </div>
       </div>
