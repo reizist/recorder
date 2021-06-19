@@ -50,28 +50,22 @@ export default function KanjiDrill({ token, kanjis }) {
       </div>
 
       <div className="text-center h-screen w-screen">
-        <div className="text-center">
-          <span className="text-xs">©ドリルジェネレータ</span>
-        </div>
-
         {eachSlice(kanjis, MAX_RENDERABLE_NUM).map((kanji_parts) => (
           <main className="kanji container px-4 text-center">
-            {" "}
-            <div className="name-box grid grid-cols-4 gap-4 m-4">
-              {" "}
+            <div className="name-box grid grid-cols-5 gap-4 m-4 items-center text-right">
               <div className="qr-code">
-                {" "}
                 <QrCODE path={"kanji_drill?token=" + token} size={100} />{" "}
-              </div>{" "}
-              <div className="text-3xl justify-center align-center">
-                なまえ:
-              </div>{" "}
-              <div className="border m-3 rounded-sm border-gray-600 col-span-2"></div>{" "}
-            </div>{" "}
+              </div>
+              <div className="text-center">
+                <span className="text-xs">©ドリルジェネレータ</span>
+              </div>
+              <div className="text-3xl">なまえ</div>
+              <div className="border m-4 rounded-sm border-gray-600 col-span-2 w-5/6"></div>{" "}
+            </div>
             <div className="mt-1">
               {kanji_parts.length > 0 &&
                 kanji_parts.map((kanji) => (
-                  <div className="grid grid-cols-6 grid-flow-row gap-1 auto-cols-max auto-rows-max md:auto-rows-min page">
+                  <div className="grid grid-cols-7 grid-flow-row gap-1 auto-cols-max auto-rows-max md:auto-rows-min page">
                     <div className="pb-full relative">
                       <div className="absolute inset-0 h-full w-full">
                         {renderSVG(
@@ -80,32 +74,50 @@ export default function KanjiDrill({ token, kanjis }) {
                         )}
                       </div>
                     </div>
-                    <div className="text-center border m-1 align-middle items-center">
+                    <div className="text-center border border-gray-400 m-1 align-middle items-center">
                       {data !== undefined && (
-                        <div className="grid grid-cols-3">
-                          <div>
-                            {
-                              data.meta.filter((d) => d.literal === kanji)[0]
-                                .on_yomi
-                            }
+                        <>
+                          <div className="grid grid-cols-3 w-1/3 m-1">
+                            <div className="col-span-1 text-xs">
+                              <span className="border p-px rounded-lg">音</span>
+                            </div>
+                            <div className="col-span-2 text-xs">
+                              {
+                                data.meta.filter((d) => d.literal === kanji)[0]
+                                  .on_yomi
+                              }
+                            </div>
                           </div>
-                          <div>
-                            {
-                              data.meta.filter((d) => d.literal === kanji)[0]
-                                .kun_yomi
-                            }
+
+                          <div className="grid grid-cols-3 w-1/3 m-1">
+                            <div className="col-span-1 text-xs">
+                              <span className="border p-px rounded-lg">訓</span>
+                            </div>
+                            <div className="col-span-2 text-xs">
+                              {
+                                data.meta.filter((d) => d.literal === kanji)[0]
+                                  .kun_yomi
+                              }
+                            </div>
                           </div>
-                          <div style={{ "text-combine-upright": "all" }}>
-                            {
-                              data.meta.filter((d) => d.literal === kanji)[0]
-                                .stroke_count
-                            }
+
+                          <div className="grid grid-cols-3 w-1/3 m-1">
+                            <div className="col-span-1 text-xs">画数</div>
+                            <div
+                              className="col-span-2 text-xs"
+                              style={{ "text-combine-upright": "all" }}
+                            >
+                              {
+                                data.meta.filter((d) => d.literal === kanji)[0]
+                                  .stroke_count
+                              }
+                            </div>
                           </div>
-                        </div>
+                        </>
                       )}
                     </div>
-                    {[2, 3, 4, 4].map((index) => (
-                      <div className="text-center border m-1 align-middle items-center">
+                    {[2, 3, 4, 4, 4].map((index) => (
+                      <div className="text-center border border-gray-400 m-1 align-middle items-center">
                         {renderSVG(
                           kanji,
                           `h-full w-full object-cover object-center opacity-${
