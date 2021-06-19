@@ -1,4 +1,4 @@
-function toCode(kanji) {
+export function toCode(kanji) {
   return kanji.charCodeAt(0).toString(16);
 }
 

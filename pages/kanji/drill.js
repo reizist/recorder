@@ -1,4 +1,7 @@
-import { svgPath, renderSVG } from "../../components/kanji/util";
+import useSWR from "swr";
+import { toCode } from "../../components/kanji/util";
+
+import { renderSVG } from "../../components/kanji/util";
 
 import QrCODE from "../../components/qrcode";
 
@@ -27,6 +30,12 @@ export default function KanjiDrill({ token, kanjis }) {
   const style = `
     @page { size:landscape; }
   `;
+
+  const codes = kanjis.map((kanji) => "0" + toCode(kanji));
+  const { data } = useSWR(
+    codes != "" ? `/api/kanji/meta?codes=${codes.join(",")}` : null
+  );
+
   return (
     <>
       <style>{style}</style>
@@ -62,20 +71,44 @@ export default function KanjiDrill({ token, kanjis }) {
             <div className="mt-1">
               {kanji_parts.length > 0 &&
                 kanji_parts.map((kanji) => (
-                  <div className="grid grid-cols-5 grid-flow-row gap-1 auto-rows-max md:auto-rows-min page">
-                    <div class="pb-full relative">
-                      <div class="absolute inset-0 h-full w-full">
+                  <div className="grid grid-cols-6 grid-flow-row gap-1 auto-cols-max auto-rows-max md:auto-rows-min page">
+                    <div className="pb-full relative">
+                      <div className="absolute inset-0 h-full w-full">
                         {renderSVG(
                           kanji,
-                          "h-full w-full object-cover object-center w-11/12 h-11/12"
+                          "h-full w-full object-cover object-center w-8/12 h-8/12"
                         )}
                       </div>
+                    </div>
+                    <div className="text-center border m-1 align-middle items-center">
+                      {data !== undefined && (
+                        <div className="grid grid-cols-3">
+                          <div>
+                            {
+                              data.meta.filter((d) => d.literal === kanji)[0]
+                                .on_yomi
+                            }
+                          </div>
+                          <div>
+                            {
+                              data.meta.filter((d) => d.literal === kanji)[0]
+                                .kun_yomi
+                            }
+                          </div>
+                          <div style={{ "text-combine-upright": "all" }}>
+                            {
+                              data.meta.filter((d) => d.literal === kanji)[0]
+                                .stroke_count
+                            }
+                          </div>
+                        </div>
+                      )}
                     </div>
                     {[2, 3, 4, 4].map((index) => (
                       <div className="text-center border m-1 align-middle items-center">
                         {renderSVG(
                           kanji,
-                          `h-full w-full object-cover object-center w-11/12 h-11/12 opacity-${
+                          `h-full w-full object-cover object-center opacity-${
                             100 - Math.min(30 * index, 100)
                           }`
                         )}
