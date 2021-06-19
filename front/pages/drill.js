@@ -57,65 +57,67 @@ function calcQuiz(quiz) {
 export default function Drill({ token, quizes }) {
   return (
     <>
-      <main className="container max-w-6xl mx-auto items-center justify-center text-center mt-8 mb-8 h-auto">
-        <div className="mb-4">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded without-print"
-            onClick={() => window.print()}
-          >
-            プリントする
-          </button>
-        </div>
-
-        <div className="name-box grid grid-cols-3 gap-4 mb-8">
-          <div className="name-label text-3xl col-span-2 mr-4 text-right">
-            <span className="align-middle">なまえ: </span>
+      <div className="h-screen">
+        <main className="container max-w-6xl mx-auto items-center justify-center text-center mt-8 mb-8 h-auto">
+          <div className="mb-4">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded without-print"
+              onClick={() => window.print()}
+            >
+              プリントする
+            </button>
           </div>
-          <div className="border rounded-sm  border-gray-600 col-span-1 text-4xl mr-4 h-14"></div>
-        </div>
 
-        {["quiz_", "ans_"].map((prefix) => (
-          <div
-            key={prefix}
-            className={`doc grid gap-10 mt-10 ${
-              quizes.length === 30 ? "grid-cols-3" : "grid-cols-2"
-            } ${prefix === "quiz_" ? "page" : ""} ${
-              prefix === "ans_" ? "with-print" : ""
-            }
-            `}
-          >
-            {quizes.map((q, index) => {
-              let quiz = calcQuiz(q);
-              return (
-                <>
-                  <div key={prefix + index + q} className="text-3xl block mb-2">
-                    <span>
-                      {quiz["b"]} {quiz["o"]} {quiz["a"]} ={" "}
-                    </span>
-                    {prefix === "quiz_" && (
-                      <span
-                        key={prefix + index + q}
-                        className="answer ml-2"
-                        style={{ display: "none" }}
-                      >
-                        {quiz["ans"]}
-                      </span>
-                    )}
-                    {prefix === "ans_" && (
-                      <span key={prefix + index + q} className="answer ml-2">
-                        {quiz["ans"]}
-                      </span>
-                    )}
-                  </div>
-                </>
-              );
-            })}
+          <div className="name-box grid grid-cols-3 gap-4 mb-8">
+            <div className="name-label text-3xl col-span-2 mr-4 text-right">
+              <span className="align-middle">なまえ: </span>
+            </div>
+            <div className="border rounded-sm  border-gray-600 col-span-1 text-4xl mr-4 h-14"></div>
           </div>
-        ))}
 
-      </main>
+          {["quiz_", "ans_"].map((prefix) => (
+            <div
+              key={prefix}
+              className={`doc grid gap-10 mt-10 ${
+                quizes.length === 30 ? "grid-cols-3" : "grid-cols-2"
+              } ${prefix === "quiz_" ? "page" : ""} ${
+                prefix === "ans_" ? "with-print" : ""
+              }
+              `}
+            >
+              {quizes.map((q, index) => {
+                let quiz = calcQuiz(q);
+                return (
+                  <>
+                    <div key={prefix + index + q} className="text-3xl block mb-2">
+                      <span>
+                        {quiz["b"]} {quiz["o"]} {quiz["a"]} ={" "}
+                      </span>
+                      {prefix === "quiz_" && (
+                        <span
+                          key={prefix + index + q}
+                          className="answer ml-2"
+                          style={{ display: "none" }}
+                        >
+                          {quiz["ans"]}
+                        </span>
+                      )}
+                      {prefix === "ans_" && (
+                        <span key={prefix + index + q} className="answer ml-2">
+                          {quiz["ans"]}
+                        </span>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+            </div>
+          ))}
 
-      <Footer token={token}></Footer>
+        </main>
+
+        <Footer token={token}></Footer>
+      </div>
     </>
   );
 }

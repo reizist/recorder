@@ -11,7 +11,7 @@ export async function getServerSideProps(context) {
   return { props: { kanjis: kanjis, token: token } };
 }
 
-const MAX_RENDERABLE_NUM = 9;
+const MAX_RENDERABLE_NUM = 8;
 
 const eachSlice = (arr, n = 2) => {
   let dup = [...arr];
