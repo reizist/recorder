@@ -6,7 +6,9 @@ async function getFromLocal(codes) {
     try {
       data = JSON.parse(fs.readFileSync(`./public/kanji/meta/${code}.json`));
       metas.push(data);
-    } catch {}
+    } catch (error) {
+      console.log(error);
+    }
   });
   return metas;
 }

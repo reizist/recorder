@@ -74,51 +74,49 @@ export default function KanjiDrill({ token, kanjis }) {
                         )}
                       </div>
                     </div>
-                    <div className="text-center w-5/6 border-gray-400 m-1 align-middle">
-                      {data !== undefined && data.meta.length > 0 && (
-                        <>
-                          <div className="grid grid-cols-3 w-1/3 m-1">
-                            <div className="col-span-1 text-xs">
-                              <span className="border p-px rounded-lg">音</span>
-                            </div>
-                            <div className="col-span-2 text-xs">
-                              {
-                                data.meta.filter((d) => d.literal === kanji)[0]
-                                  .on_yomi
-                              }
-                            </div>
+                    {data !== undefined && data.meta.length > 0 && (
+                      <div className="text-center w-5/6 border-gray-400 m-1 align-middle">
+                        <div className="grid grid-cols-3 w-1/3 m-1">
+                          <div className="col-span-1 text-xs">
+                            <span className="border p-px rounded-lg">音</span>
                           </div>
+                          <div className="col-span-2 text-xs">
+                            {
+                              data.meta.filter((d) => d.literal === kanji)[0]
+                                .on_yomi
+                            }
+                          </div>
+                        </div>
 
-                          <div className="grid grid-cols-3 w-1/3 m-1">
-                            <div className="col-span-1 text-xs">
-                              <span className="border p-px rounded-lg">訓</span>
-                            </div>
-                            <div className="col-span-2 text-xs">
-                              {
-                                data.meta.filter((d) => d.literal === kanji)[0]
-                                  .kun_yomi
-                              }
-                            </div>
+                        <div className="grid grid-cols-3 w-1/3 m-1">
+                          <div className="col-span-1 text-xs">
+                            <span className="border p-px rounded-lg">訓</span>
                           </div>
+                          <div className="col-span-2 text-xs">
+                            {
+                              data.meta.filter((d) => d.literal === kanji)[0]
+                                .kun_yomi
+                            }
+                          </div>
+                        </div>
 
-                          <div className="grid grid-cols-3 w-1/3 m-1">
-                            <div className="col-span-1 text-xs rounded-lg">
-                              <span className="border p-px rounded-lg">画</span>
-                            </div>
-                            <div
-                              className="col-span-2 text-xs"
-                              style={{ "text-combine-upright": "all" }}
-                            >
-                              {
-                                data.meta.filter((d) => d.literal === kanji)[0]
-                                  .stroke_count
-                              }
-                              画
-                            </div>
+                        <div className="grid grid-cols-3 w-1/3 m-1">
+                          <div className="col-span-1 text-xs rounded-lg">
+                            <span className="border p-px rounded-lg">画</span>
                           </div>
-                        </>
-                      )}
-                    </div>
+                          <div
+                            className="col-span-2 text-xs"
+                            style={{ "text-combine-upright": "all" }}
+                          >
+                            {
+                              data.meta.filter((d) => d.literal === kanji)[0]
+                                .stroke_count
+                            }
+                            画
+                          </div>
+                        </div>
+                      </div>
+                    )}
                     {[2, 3, 4, 4, 4].map((index) => (
                       <div className="text-center border border-gray-400 m-1 align-middle items-center">
                         {renderSVG(

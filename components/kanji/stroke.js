@@ -65,6 +65,11 @@ export default function Stroke() {
     <>
       <div className="mt-8">
         <div>
+          <div className="mb-8 block text-center text-xl">
+            <span className="text my-2 text-base">
+              問題にしたい漢字を一覧から選択してください。
+            </span>
+          </div>
           {kanjiLists.map((kanji) => (
             <>
               <AccordionHeader
