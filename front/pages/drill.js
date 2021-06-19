@@ -58,6 +58,15 @@ export default function Drill({ token, quizes }) {
   return (
     <>
       <main className="container max-w-6xl mx-auto items-center justify-center text-center mt-8 mb-8 h-auto">
+        <div className="mb-4">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded without-print"
+            onClick={() => window.print()}
+          >
+            プリントする
+          </button>
+        </div>
+
         <div className="name-box grid grid-cols-3 gap-4 mb-8">
           <div className="name-label text-3xl col-span-2 mr-4 text-right">
             <span className="align-middle">なまえ: </span>
@@ -104,14 +113,6 @@ export default function Drill({ token, quizes }) {
           </div>
         ))}
 
-        <div className="mt-4">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded without-print"
-            onClick={() => window.print()}
-          >
-            プリントする
-          </button>
-        </div>
       </main>
 
       <Footer token={token}></Footer>
