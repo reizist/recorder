@@ -1,6 +1,14 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins "*.drill-generator.com"
+      resource "*",
+        headers: :any,
+        methods: [:get, :post, :options, :head]
+    end
+  end
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
