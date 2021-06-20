@@ -1,5 +1,5 @@
 class Api::KanjisController < ApplicationController
   def meta
-    render json: {}
+    render json: {hoge: "hoge"}
   end
 end
