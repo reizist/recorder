@@ -12,6 +12,7 @@ export async function getServerSideProps(context) {
 }
 
 const MAX_RENDERABLE_NUM = 8;
+const API_ENDPOINT = process.env.NODE_ENV === 'production' ? 'https://drill-api.herokuapp.com' : 'drill-api';
 
 const eachSlice = (arr, n = 2) => {
   let dup = [...arr];
@@ -33,7 +34,7 @@ export default function KanjiDrill({ token, kanjis }) {
 
   const codes = kanjis.map((kanji) => "0" + toCode(kanji));
   const { data } = useSWR(
-    codes != "" ? `/api/kanji/meta?codes=${codes.join(",")}` : null
+    codes != "" ? `${API_ENDPOINT}/api/kanjis/meta?codes=${codes.join(",")}` : null
   );
 
   return (
