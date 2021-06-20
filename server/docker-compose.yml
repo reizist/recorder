@@ -1,0 +1,71 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    platform: linux/amd64
+    container_name: drill-mysql
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - 13306:3306
+  # selenium-chrome: &selenium-chrome
+  #   container_name: enpay-selenium-chrome
+  #   image: selenium/standalone-chrome-debug:3.141.59
+  #   cap_add:
+  #     - SYS_ADMIN
+  #   ports:
+  #     - 55900:5900
+  #   environment:
+  #     TZ: Asia/Tokyo
+  app_base: &app_base
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: drill-base
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+      # - yarn:/usr/local/share/.cache/yarn
+      # - node_modules:/app/node_modules
+      - cache:/app/tmp/cache
+    depends_on:
+      - mysql
+      # - selenium-chrome
+    environment:
+      DB_HOST: mysql
+      USE_LETTER_OPENER_WEB: 1
+      # SELENIUM_URL: http://selenium-chrome:4444/wd/hub
+      # WEBPACKER_DEV_SERVER_HOST: webpack-dev-server
+    env_file:
+      - .env
+  spring:
+    <<: *app_base
+    command: bundle exec spring server
+    container_name: drill-spring
+  app:
+    <<: *app_base
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 30000 -b '0.0.0.0'"
+    container_name: drill-app
+    stdin_open: true
+    tty: true
+    ports:
+      - "30000:30000"
+  # webpack-dev-server:
+  #   <<: *app_base
+  #   environment:
+  #     NODE_ENV: development
+  #     RAILS_ENV: development
+  #     WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+  #   command: ./bin/webpack-dev-server
+  #   container_name: enpay-web-webpack-dev-server
+  #   ports:
+  #     - '3035:3035'
+volumes:
+  mysql-data:
+  bundle:
+  # yarn:
+  # yarn_modules:
+  cache:
+

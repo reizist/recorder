@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.with-print {
+  display: none;
+}
+
+body {
+  font-family: "Shippori Mincho B1", serif;
+}
+
+@page {
+  size: A4;
+}
+
+.page {
+  page-break-after: always;
+  page-break-inside: avoid;
+}
+
+.kanji {
+  -ms-writing-mode: tb-rl;
+  -webkit-writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
+  max-width: 100%;
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+.kanji > .name-box {
+  width: 100px;
+}
+
+@media print {
+  .header {
+    display: none;
+  }
+
+  .with-print {
+    display: grid !important;
+  }
+
+  .without-print {
+    display: none !important;
+  }
+}
