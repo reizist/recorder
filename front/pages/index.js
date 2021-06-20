@@ -1,8 +1,6 @@
 import Head from "next/head";
 import LeftMenu from "../components/left_menu";
 import Tweets from "../components/tweets";
-import Form from "../components/form";
-import Footer from "../components/footer";
 
 export default function Home() {
   return (
@@ -18,7 +16,9 @@ export default function Home() {
         </div>
 
         <div className="w-full lg:w-7/12 bg-white mb-4 px-4 text-center">
-          <Form></Form>
+          <main className="my-6">
+            αバージョンでは、 PC上のChromeブラウザからの動作のみを保証しています。
+          </main>
         </div>
 
         <div className="w-full lg:w-2/12  md:w-4/6 xs:w-4/6 bg-white mb-4 px-4 text-center">
