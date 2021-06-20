@@ -4,14 +4,14 @@ import LeftMenu from "../components/left_menu";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center py-2">
+    <div className="flex flex-col items-center justify-center">
       <Head>
         <title>計算ドリルジェネレータ</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="container mx-auto flex flex-col lg:flex-row mt-2 text-sm leading-normal text-center">
-        <div className="w-full lg:w-3/12 my-8 mx-4">
+        <div className="w-full lg:w-3/12 my-4 mx-4">
           <LeftMenu />
         </div>
 

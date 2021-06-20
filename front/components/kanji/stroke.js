@@ -83,7 +83,7 @@ export default function Stroke() {
               <Accordion id={"element-" + kanji["level"]} isOpen={activeItem}>
                 <div
                   key={"element-" + kanji["level"]}
-                  className="grid grid-cols-5 grid-flow-row gap-2 auto-rows-max md:auto-rows-min"
+                  className="grid grid-cols-5 grid-flow-row gap-4 auto-rows-max md:auto-rows-min"
                 >
                   {kanji["list"].length > 0 &&
                     kanji["list"].map((kanji) => (

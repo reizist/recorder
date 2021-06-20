@@ -3,18 +3,18 @@ export default function Footer({ token }) {
   if (token) {
     qrCodeUrl =
       "https://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=" +
-      "https://recorder-reizist.vercel.app/drill?token=" +
+      "https://drill-generator.com/drill?token=" +
       token;
   }
 
   return (
-    <footer className="flex items-center justify-center border-t mt-4">
+    <footer className="flex items-center justify-center my-4 px-4">
       <div className="flex-box">
-        <div className="flex items-center justify-center">
-          <img src={qrCodeUrl} className="mt-2" />
+        <div className="flex items-center justify-center mt-2">
+          <img src={qrCodeUrl} className="mt-4" />
           Powered by{" "}
           <span className="pl-1 text-base text-purple-700">
-            <a href="https://recorder-reizist.vercel.app/">
+            <a href="/">
               ドリルジェネレータ
             </a>
           </span>
