@@ -1,4 +1,5 @@
 import Footer from "../components/footer";
+import QrCODE from "../components/qrcode";
 
 export async function getServerSideProps(context) {
   const { token } = context.query;
@@ -68,11 +69,21 @@ export default function Drill({ token, quizes }) {
             </button>
           </div>
 
-          <div className="name-box grid grid-cols-3 gap-4 mb-8">
-            <div className="name-label text-3xl col-span-2 mr-4 text-right">
+          <div className="name-box grid grid-cols-5 gap-3 mb-4">
+            <div className="flex-box col-span-2">
+              <div className="flex items-center justify-center m-auto">
+                <QrCODE path={"/drill?token=" + token} size={100} />
+                Powered by{" "}
+                <span className="pl-1 text-base text-purple-700">
+                  <a href="/">ドリルジェネレータ</a>
+                </span>
+              </div>
+            </div>
+
+            <div className="name-label text-3xl mr-4 text-right m-auto">
               <span className="align-middle">なまえ: </span>
             </div>
-            <div className="border rounded-sm  border-gray-600 col-span-1 text-4xl mr-4 h-14"></div>
+            <div className="border rounded-sm  border-gray-600 text-4xl mr-4 h-14 col-span-2 my-auto"></div>
           </div>
 
           {["quiz_", "ans_"].map((prefix) => (
@@ -89,7 +100,10 @@ export default function Drill({ token, quizes }) {
                 let quiz = calcQuiz(q);
                 return (
                   <>
-                    <div key={prefix + index + q} className="text-3xl block mb-2">
+                    <div
+                      key={prefix + index + q}
+                      className="text-3xl block mb-2"
+                    >
                       <span>
                         {quiz["b"]} {quiz["o"]} {quiz["a"]} ={" "}
                       </span>
@@ -113,10 +127,7 @@ export default function Drill({ token, quizes }) {
               })}
             </div>
           ))}
-
         </main>
-
-        <Footer token={token}></Footer>
       </div>
     </>
   );
