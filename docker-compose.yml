@@ -1,0 +1,70 @@
+version: "3"
+services:
+  db:
+    image: mysql:5.7
+    platform: linux/amd64
+    container_name: db
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - 13306:3306
+  server_base: &server_base
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server-base
+    working_dir: /app
+    volumes:
+      - ./server:/app
+      - cache:/app/tmp/cache
+      - bundle:/usr/local/bundle
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+    env_file:
+      - server/.env
+  spring:
+    <<: *server_base
+    command: bundle exec spring server
+    container_name: server-spring
+  server:
+    <<: *server_base
+    command: bash -c "rm -f /app/tmp/pids/server.pid && bundle exec rails s -p 30000 -b '0.0.0.0'"
+    container_name: server
+    stdin_open: true
+    tty: true
+    ports:
+      - "30000:30000"
+  front:
+    container_name: front
+    working_dir: /front
+    expose:
+      - "3000"
+      - "9229"
+    ports:
+      - "3000:3000"
+      - "9229:9229" # for debugging node inspect
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    volumes:
+      - ./front:/front
+      - node_modules:/front/node_modules
+      - next:/front/.next
+    environment:
+      - NODE_OPTIONS=--inspect
+      # - CHOKIDAR_USEPOLLING=true
+      - API_ENDPOINT=server
+    restart: always
+    command: npx next dev
+volumes:
+  node_modules:
+  next:
+  db-data:
+  cache:
+  bundle:
