@@ -48,6 +48,7 @@ export default function Drill({ num }) {
           .grid > div {
             border: solid 1px green;
             font-size: 2em;
+            font-family: "Rubik";
 
             display: flex;
             justify-content: center;
@@ -65,10 +66,13 @@ export default function Drill({ num }) {
             >
               プリントする
             </button>
+            <div className="mb-4">
+              Chromeの場合、詳細設定|>オプション|>背景のグラフィックをONによりグリッド付きで印刷できます
+            </div>
           </div>
 
-          <div className="w-full mx-auto">
-            <div className="grid">
+          <div className="w-full">
+            <div className="grid mx-auto">
               {range(num).map((n) => {
                 return (
                   <>
