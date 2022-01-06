@@ -17,6 +17,14 @@ export default function LeftMenu() {
       </div>
 
       <div className="pb-6 text-left">
+        <span className="tracking-wider">
+          <Link href="/times_table">
+            <a className="hover:no-underline hover:text-purple-700">99マス表</a>
+          </Link>
+        </span>
+      </div>
+
+      <div className="pb-6 text-left">
         <span className="mr-8 tracking-wider">
           <Link href="/kanji">
             <a className="hover:no-underline hover:text-purple-700">
