@@ -66,7 +66,7 @@ export default function Drill({ num }) {
             >
               プリントする
             </button>
-            <div className="mb-4">
+            <div className="mb-4 without-print">
               Chromeの場合、詳細設定|>オプション|>背景のグラフィックをONによりグリッド付きで印刷できます
             </div>
           </div>
