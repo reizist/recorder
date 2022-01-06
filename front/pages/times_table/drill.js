@@ -7,6 +7,18 @@ function range(num) {
   return [...Array(parseInt(num, 10)).keys()].map((i) => ++i);
 }
 
+function fontColor(m, n) {
+  if (m == n) {
+    return "red";
+  } else if (m == 1) {
+    return "green";
+  } else if (n == 1) {
+    return "blue";
+  } else {
+    ("");
+  }
+}
+
 export default function Drill({ num }) {
   return (
     <>
@@ -25,18 +37,12 @@ export default function Drill({ num }) {
             height: ${((1 + parseInt(num, 10)) * num) / 2}em;
             width: ${((1 + parseInt(num, 10)) * num) / 2}em;
             display: grid;
-            grid:
-              ". . . . . . . . ." 1em
-              ". . . . . . . . ." 2em
-              ". . . . . . . . ." 3em
-              ". . . . . . . . ." 4em
-              ". . . . . . . . ." 5em
-              ". . . . . . . . ." 6em
-              ". . . . . . . . ." 7em
-              ". . . . . . . . ." 8em
-              ". . . . . . . . ." 9em
-              ". . . . . . . . ." 10em
-              / 1em 2em 3em 4em 5em 6em 7em 8em 9em 10em;
+            grid-template-rows: ${range(parseInt(num, 10))
+              .map((i) => i + "em")
+              .join(" ")};
+            grid-template-columns: ${range(parseInt(num, 10))
+              .map((i) => i + "em")
+              .join(" ")};
           }
 
           .grid > div {
@@ -46,19 +52,6 @@ export default function Drill({ num }) {
             display: flex;
             justify-content: center;
             align-items: center;
-          }
-
-          .grid > div:nth-child(2),
-          .grid > div:nth-child(3),
-          .grid > div:nth-child(4),
-          .grid > div:nth-child(5),
-          .grid > div:nth-child(6),
-          .grid > div:nth-child(7),
-          .grid > div:nth-child(8),
-          .grid > div:nth-child(9),
-          .grid > div:nth-child(10),
-          .grid > div:nth-child(10n + 1) {
-            font-size: inherit;
           }
         }
       `}</style>
@@ -83,7 +76,10 @@ export default function Drill({ num }) {
                       return (
                         <div
                           style={{
-                            color: `${m == n ? "red" : ""}`,
+                            color: fontColor(m, n),
+                            fontSize: `${
+                              m != 1 && n != 1 ? 1 + 0.3 * Math.min(m, n) : 1
+                            }em`,
                           }}
                         >
                           {m * n}
