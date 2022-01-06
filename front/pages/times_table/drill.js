@@ -3,9 +3,8 @@ export async function getServerSideProps(context) {
   return { props: { num: num } };
 }
 
-function range(end) {
-  // return [...Array(end).keys()].map((i) => ++i);
-  return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+function range(num) {
+  return [...Array(parseInt(num, 10)).keys()].map((i) => ++i);
 }
 
 export default function Drill({ num }) {
@@ -23,8 +22,8 @@ export default function Drill({ num }) {
               ),
               linear-gradient(90deg, transparent calc(1em - 1px), gray 1em);
 
-            width: 55em;
-            height: 55em;
+            height: ${((1 + parseInt(num, 10)) * num) / 2}em;
+            width: ${((1 + parseInt(num, 10)) * num) / 2}em;
             display: grid;
             grid:
               ". . . . . . . . ." 1em
