@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { element_1_kanjis, element_2_kanjis, element_3_kanjis, element_4_kanjis, element_5_kanjis, element_6_kanjis } from "./define";
+import {
+  element_1_kanjis,
+  element_2_kanjis,
+  element_3_kanjis,
+  element_4_kanjis,
+  element_5_kanjis,
+  element_6_kanjis,
+  highschool_kanjis,
+} from "./define";
 import { AccordionHeader, Accordion } from "./accordion";
 import License from "./license";
 
@@ -17,7 +25,7 @@ export default function Stroke() {
     { level: 4, label: "小学四年生", list: element_4_kanjis },
     { level: 5, label: "小学五年生", list: element_5_kanjis },
     { level: 6, label: "小学六年生", list: element_6_kanjis },
-    { level: 7, label: "中学生", list: [] },
+    { level: 7, label: "中学生", list: highschool_kanjis },
   ];
 
   let allKanjiList = [];
